@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//This is a simple script that can make objects auto-rotate
+//使奖励物品旋转
 
 public class AutoRotator : MonoBehaviour {
 

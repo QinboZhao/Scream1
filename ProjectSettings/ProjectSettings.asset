@@ -478,10 +478,10 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Build: 0
-    Collab: 1
+    Collab: 0
     ErrorHub: 0
     Hub: 0
-    UNet: 1
+    UNet: 0
   cloudProjectId: f07bac30-e969-46ee-a9d1-ea3ae812d07d
   projectName: Scream (2)
   organizationId: constpi

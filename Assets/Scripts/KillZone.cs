@@ -3,18 +3,18 @@ using System.Collections;
 
 public class KillZone : MonoBehaviour {
 
-	//You need to assign CheckPoint to each killzone. CheckPoint can be just an empty gameobject. It is used only to check where player should appear after dying.
-	public GameObject CheckPoint;
+	
+	public GameObject CheckPoint;//复活点
 	public MeshRenderer MyMeshrenderer;
 	
 	private NinjaMovementScript NinjaScript;
 	
 	void Start () {
-		//Hide the red when you play the game.
+		//隐藏
 		MyMeshrenderer.enabled = false;	
 	}
 
-	//If player enters deadzone. Go back to Checkpoint.
+	//如果死亡，执行死亡，在复活点复活
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Player") {
 

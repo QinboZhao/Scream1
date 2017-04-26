@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Touch control for 2 arrows is a little more complex than the Jump button.
-//I wanted buttons to work even when the player is too fast to lift his finger.
+//左右控制
+//玩家手速快时按键依然有效
 
 public class Touch_BTN_Arrows : MonoBehaviour {
 

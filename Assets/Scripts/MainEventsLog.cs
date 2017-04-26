@@ -5,7 +5,7 @@ using System.Collections;
 
 public class MainEventsLog : MonoBehaviour {
 
-	public int SoulsCollected;
+	public int SoulsCollected;//获得奖励数
 
 	public NinjaMovementScript NinjaMovScript;
 	public GameObject TouchControls;
@@ -16,7 +16,7 @@ public class MainEventsLog : MonoBehaviour {
 	public AudioSource AudioSource_Collectible;
 	public AudioSource AudioSource_Death;
 
-    //private int heaths;
+    
 	
 	public void PlayerCollectedSoul(){
 		AudioSource_Collectible.Play ();
@@ -28,14 +28,18 @@ public class MainEventsLog : MonoBehaviour {
 
 	public void PlayerDied(){
 
-		//Camera will stop for a second when the player dies.
+		//如果死亡摄像头暂时停止跟随
 		CameraFollowScript.PlayerDied ();
         NinjaMovScript.Heath = NinjaMovScript.Heath - 1;
         Debug.Log(NinjaMovScript.Heath);
         
 		AudioSource_Death.Play ();
 		Debug.Log ("Player died");
-        if (NinjaMovScript.Heath <= 0) { Ctrls.fsmPost("over"); Debug.Log("gameoverpost_______"); }
+        if (NinjaMovScript.Heath <= 0) 
+        { 
+            Ctrls.fsmPost("over"); 
+            Debug.Log("gameover_post");
+        }
 	}
 
 

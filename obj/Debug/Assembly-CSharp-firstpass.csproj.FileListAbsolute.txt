@@ -27,4 +27,3 @@ D:\MyApps\UnityFrame\Scream\Temp\bin\Debug\UnityEngine.VR.xml
 D:\MyApps\UnityFrame\Scream\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
 D:\MyApps\UnityFrame\Scream\obj\Debug\Assembly-CSharp-firstpass.dll
 D:\MyApps\UnityFrame\Scream\obj\Debug\Assembly-CSharp-firstpass.pdb
-D:\MyApps\UnityFrame\Scream\Temp\bin\Debug\Pathfinding.Ionic.Zip.Reduced.dll

@@ -1,23 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Add this script to the platform you want to move.
+//移动的平台
 public class MovingPlatform : MonoBehaviour {
 
-	//Platform movement speed.
+	//平台移动速度
 	public float speed;
 
-	//This is the position where the platform will move.
+	//移动的位置.
 	public Transform MovePosition;
 
-	//Some private variables making the code work :)
+	//起始位置
 	private Vector3 StartPosition;
 	private Vector3 EndPosition;
 	private bool OnTheMove;
 
-	// Use this for initialization
+	
 	void Start () {
-		//Store the start and the end position. Platform will move between these two points.
+		
 		StartPosition = this.transform.position;
 		EndPosition = MovePosition.position;
 	}
@@ -32,8 +32,8 @@ public class MovingPlatform : MonoBehaviour {
 		}else{
 			this.transform.position = Vector3.MoveTowards (this.transform.position, StartPosition, step);
 		}
-
-		//When the platform reaches end. Start to go into other direction.
+		
+        //当平台到达终点，开始向反方向移动
 		if (this.transform.position.x == EndPosition.x && this.transform.position.y == EndPosition.y && OnTheMove == false) {
 			OnTheMove = true;
 		}else if (this.transform.position.x == StartPosition.x && this.transform.position.y == StartPosition.y && OnTheMove == true) {

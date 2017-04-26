@@ -46,18 +46,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Code\Ctrl.cs" />
-     <Compile Include="Assets\Code\Model.cs" />
-     <Compile Include="Assets\Code\View.cs" />
-     <Compile Include="Assets\Code\end.cs" />
-     <Compile Include="Assets\Scripts\AI\AITrack.cs" />
-     <Compile Include="Assets\Scripts\AI\Enemy_FlyingA.cs" />
+     <Compile Include="Assets\Scripts\AI\AILocomotion.cs" />
+     <Compile Include="Assets\Scripts\AI\ColliderColorChange.cs" />
+     <Compile Include="Assets\Scripts\AI\Steering.cs" />
+     <Compile Include="Assets\Scripts\AI\SteeringForCollisionAvoidance.cs" />
+     <Compile Include="Assets\Scripts\AI\SteeringForPursuit.cs" />
+     <Compile Include="Assets\Scripts\AI\SteeringForSeek.cs" />
+     <Compile Include="Assets\Scripts\AI\Vehicle.cs" />
      <Compile Include="Assets\Scripts\Astar\FindPath.cs" />
      <Compile Include="Assets\Scripts\Astar\Grid.cs" />
      <Compile Include="Assets\Scripts\Astar\Node.cs" />
      <Compile Include="Assets\Scripts\AutoRotator.cs" />
      <Compile Include="Assets\Scripts\CameraFollowTarget.cs" />
      <Compile Include="Assets\Scripts\Checkpoint.cs" />
+     <Compile Include="Assets\Scripts\Code\Ctrl.cs" />
+     <Compile Include="Assets\Scripts\Code\Model.cs" />
+     <Compile Include="Assets\Scripts\Code\View.cs" />
+     <Compile Include="Assets\Scripts\Code\end.cs" />
      <Compile Include="Assets\Scripts\KillZone.cs" />
      <Compile Include="Assets\Scripts\MainEventsLog.cs" />
      <Compile Include="Assets\Scripts\MovingPlatform.cs" />

@@ -16,7 +16,7 @@ public class NinjaCollectible : MonoBehaviour {
 			SoulParticles.Emit(10);
 			Invoke ("DestroyObject", 1f);
 
-			//Send message to MainEventsLog. First checks if the reference path is set. If not, it will MainEventsLog from the scene.
+			//向 MainEventsLog发送消息
 			if(MainEventsLog_script == null){
 				MainEventsLog_script = GameObject.FindGameObjectWithTag("MainEventLog").GetComponent<MainEventsLog>();
 			}

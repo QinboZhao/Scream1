@@ -34,13 +34,13 @@ public class CameraFollowTarget : MonoBehaviour {
 		
 	}
 
-	//Stops the camera follow for a half second...
+	//停止摄像头跟随
 	public void PlayerDied(){
 		PlayerJustDied = true;
-		Invoke ("BackToBusiness", 0.2f);
+		Invoke ("BackToBusiness", 0.5f);
 	}
 
-	//Camera follow back ON.
+	//恢复.
 	void BackToBusiness(){
 		PlayerJustDied = false;
 	}

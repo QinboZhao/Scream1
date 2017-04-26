@@ -1,6 +1,6 @@
 using UnityEngine;
 
-//CameraTouchControl Sends touch events to OnScreen buttons.
+//¶àµã´¥Åö
 
 public class CameraTouchControl : MonoBehaviour
 {

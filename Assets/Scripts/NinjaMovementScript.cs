@@ -3,16 +3,17 @@ using System.Collections;
 
 public class NinjaMovementScript : MonoBehaviour {
 	
-	//Player speed and JumpForce. You can tweak these to change the game dynamics. 
+	//玩家速度
 	public float PlayerSpeed;
+    //跳跃力
 	public float JumpForce;
+    //生命
     public int Heath;
-	//Do you want player to have double jump? Then make this DoubleJump boolean true :)
+	//二级跳开关
 	public bool DoubleJump;
 	
 
-	//These variables are for the code. They track the current events of the player character.
-	//You don't need to change or worry about them :)
+	
 	private MainEventsLog MainEventsLog_script;
 	private bool DJ_available;
 	private float JumpForceCount;
@@ -26,22 +27,22 @@ public class NinjaMovementScript : MonoBehaviour {
 
 	private bool PlayerLooksRight;
 
-	//Checkpoint related things:
+	//复活点
 	public GameObject ActiveCheckpoint;
 
 
 
-	//These booleans keep track which button is being pressed or not.
+	//按键是否按下
 	private bool Btn_Left_bool;
 	private bool Btn_Right_bool;
 	private bool Btn_Jump_bool;
 
-	//Here are reference slots for AnimationController and Player Sprite Object.
+	//动画和精灵
 	public Animator AnimatorController;
 	public GameObject MySpriteOBJ;
 	private Vector3 MySpriteOriginalScale;
 
-	//Here are reference slots for Player Particle Emitters
+	//粒子系统
 	public ParticleSystem WallGripParticles;
 	private int WallGripEmissionRate;
 	public ParticleSystem JumpParticles_floor;
@@ -50,29 +51,29 @@ public class NinjaMovementScript : MonoBehaviour {
 	public ParticleSystem Particles_DeathBoom;
 
 
-	//AudioSources play the audios of the scene.
+	
 	public AudioSource AudioSource_Jump;
 
 
 
 	
-	// Use this for initialization
+	
 	void Start () {
 
-		//Just some default values for WallGrip Particle Emitter.
+		//粒子系统发射速率
 		WallGripEmissionRate = 10;
 		WallGripParticles.emissionRate = 0;
 
-		//Player characters looks right in the start of the scene.
+		
 		PlayerLooksRight = true;
-		MySpriteOriginalScale = MySpriteOBJ.transform.localScale;
+		MySpriteOriginalScale = MySpriteOBJ.transform.localScale;//原始缩放
 
 	}
 	
-	// Update is called once per frame
+	
 	void Update () {
 
-		//Button commands from the keyboard
+		//键盘操作
 		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
 			Button_Left_press();		
 		}
@@ -110,9 +111,9 @@ public class NinjaMovementScript : MonoBehaviour {
 
 	void FixedUpdate(){
 
-		//The actual movement happens here.
+		//实际操作
 
-		//Checks is the player pressing left or right button.
+		//按键检查
 		if(Btn_Left_bool == true && Btn_Right_bool == false){
 			if(PlayerLooksRight == true && WallTouch == false){
 				PlayerLooksRight = false;
@@ -128,20 +129,20 @@ public class NinjaMovementScript : MonoBehaviour {
 		}
 
 
-		//Slowdown the player fall if touching a wall
+		//如果在墙上，降低玩家速度
 		if (IsGrounded == false && WallTouch == true) {
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2 (this.GetComponent<Rigidbody2D>().velocity.x, Physics2D.gravity.y * 0.01f);
 		}
 
 
-		//Lift player up if jump is happening
+		//跳跃
 		if (Btn_Jump_bool == true && JumpForceCount > 0) {
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x,JumpForce);
 			JumpForceCount -= 0.1f*Time.deltaTime;			
 		}
 
 
-		//Send variables to Animation Controller
+		//发送数据到动画状态机
 		AnimatorController.SetFloat ("HorizontalSpeed", this.GetComponent<Rigidbody2D>().velocity.x*this.GetComponent<Rigidbody2D>().velocity.x);
 		AnimatorController.SetFloat ("VerticalSpeed", this.GetComponent<Rigidbody2D>().velocity.y);
 		AnimatorController.SetBool ("Grounded", IsGrounded);
@@ -152,7 +153,7 @@ public class NinjaMovementScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 
-		//Did the player hit the ground
+		//在地上
 		if (coll.gameObject.tag == "Ground" && IsGrounded == false) {
 			DJ_available = false;
 			GroundedToOBJ = coll.gameObject;
@@ -160,7 +161,7 @@ public class NinjaMovementScript : MonoBehaviour {
 			IsGrounded = true;
 		}
 
-		//Did the player hit the wall
+		//在墙上
 		if(coll.gameObject.tag == "Wall" && this.GetComponent<Rigidbody2D>().velocity.y < 0f) {
 
 			DJ_available = false;
@@ -169,7 +170,7 @@ public class NinjaMovementScript : MonoBehaviour {
 
 			WallTouch = true;
 
-			//Check that the player is facing to the right direction
+			//在墙上改变玩家方向
 			if(WallOBJ.transform.position.x < this.transform.position.x){
 				PlayerLooksRight = true;
 				MySpriteOBJ.transform.localScale = MySpriteOriginalScale;
@@ -178,7 +179,7 @@ public class NinjaMovementScript : MonoBehaviour {
 				MySpriteOBJ.transform.localScale = new Vector3(-MySpriteOriginalScale.x,MySpriteOriginalScale.y,MySpriteOriginalScale.z);
 			}
 
-			//Start emiting smoke particles when touching the wall
+			//开启粒子系统
 			WallGripParticles.emissionRate = WallGripEmissionRate;
 		}
 
@@ -188,7 +189,7 @@ public class NinjaMovementScript : MonoBehaviour {
 
 	}
 
-	//OnCollisionStay we are making sure that Wall and Ground collisions are getting registered...
+	
 	void OnCollisionStay2D(Collision2D coll) {
 		
 		if(coll.gameObject.tag == "Wall" && WallTouch == false && this.GetComponent<Rigidbody2D>().velocity.y < 0f) {
@@ -217,7 +218,7 @@ public class NinjaMovementScript : MonoBehaviour {
 	}
 
 
-	//Here we check if the player is jumping or moving away from the wall or ground.
+	//离开墙或地
 	void OnCollisionExit2D(Collision2D coll) {
 
 		if (coll.gameObject.tag == "Ground" && coll.gameObject == GroundedToOBJ) {
@@ -229,7 +230,7 @@ public class NinjaMovementScript : MonoBehaviour {
 		}
 
 		if (coll.gameObject.tag == "Wall" && coll.gameObject == WallOBJ) {
-			//This makes the walljump easier. Player is able to do the wall jump even few miliseconds after he let go of the wall.
+            //这使得翻墙容易，玩家能在离开墙几毫秒后继续跳跃
 			DJ_available = true;
 			walljump_count = 0.16f;
 
@@ -249,7 +250,7 @@ public class NinjaMovementScript : MonoBehaviour {
 		this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
 
-		//Send message to MainEventsLog. First checks if the reference path is set. If not, it will MainEventsLog from the scene.
+		
 		if(MainEventsLog_script == null){
 			MainEventsLog_script = GameObject.FindGameObjectWithTag("MainEventLog").GetComponent<MainEventsLog>();
 		}
@@ -258,7 +259,7 @@ public class NinjaMovementScript : MonoBehaviour {
 
 
 
-	//This region is for Button events. (These same events are called from Keyboard and Touch Buttons)
+	//button
 	#region ButtonVoids
 
 	public void Button_Left_press(){
@@ -283,7 +284,7 @@ public class NinjaMovementScript : MonoBehaviour {
 		Btn_Jump_bool = true;
 
 
-		//If you are on the ground. Do the Jump.
+		//如果在地上，执行跳跃
 		if (IsGrounded == true) {
 			DJ_available = true;
 			AudioSource_Jump.Play();
@@ -291,7 +292,7 @@ public class NinjaMovementScript : MonoBehaviour {
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x,JumpForce);
 			JumpParticles_floor.Emit(20);
 
-		//If you are in the air and DoubleJump is available. Do it!
+		//如何在天上，开启了二段跳
 		}else if(DoubleJump == true && DJ_available == true && WallTouch == false){
 			DJ_available = false;
 			AudioSource_Jump.Play();
@@ -301,7 +302,7 @@ public class NinjaMovementScript : MonoBehaviour {
 		}
 
 
-		//If you touch the wall or just let go. And are defenitly not in the ground. Do the Wall Jump!
+		//在墙上或者刚离开墙，执行墙跳
 		if ((WallTouch == true || walljump_count > 0f) && IsGrounded == false) {
 			DJ_available = true;
 			AudioSource_Jump.Play();
