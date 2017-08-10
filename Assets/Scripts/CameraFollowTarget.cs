@@ -26,10 +26,10 @@ public class CameraFollowTarget : MonoBehaviour {
 						Vector3 CameraMovementAmount = PositionBefore - this.transform.position;
 
 						BackgroundROOTS [0].transform.Translate (-CameraMovementAmount * 0.8f);
-						BackgroundROOTS [1].transform.Translate (-CameraMovementAmount * 0.7f);
-						BackgroundROOTS [2].transform.Translate (-CameraMovementAmount * 0.5f);
-						BackgroundROOTS [3].transform.Translate (-CameraMovementAmount * 0.4f);
-						BackgroundROOTS [4].transform.Translate (-CameraMovementAmount * 0.3f);
+						//BackgroundROOTS [1].transform.Translate (-CameraMovementAmount * 0.7f);
+						//BackgroundROOTS [2].transform.Translate (-CameraMovementAmount * 0.5f);
+						//BackgroundROOTS [3].transform.Translate (-CameraMovementAmount * 0.4f);
+						//BackgroundROOTS [4].transform.Translate (-CameraMovementAmount * 0.3f);
 		}
 		
 	}

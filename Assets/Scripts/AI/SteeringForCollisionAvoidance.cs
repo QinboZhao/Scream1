@@ -51,7 +51,7 @@ public class SteeringForCollisionAvoidance : Steering
 
             if (hit.collider.gameObject.name == "Wall"
                 || hit.collider.gameObject.name == "Roof" || hit.collider.gameObject.name == "Ground"
-                || hit.collider.gameObject.name == "Top")
+                || hit.collider.gameObject.name == "Top" || hit.collider.gameObject.name == "Bot")
             {
                 Vector3 ahead = transform.position + normalizedVelocity * MAX_SEE_AHEAD * (velocity.magnitude / maxSpeed);
                 force = ahead - hit.collider.transform.position;

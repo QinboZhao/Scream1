@@ -22,6 +22,7 @@ public class SteeringForSeek : Steering {
 	
 	public override Vector3 Force()
 	{
+        //计算预期速度
 		desiredVelocity = (target.transform.position - transform.position).normalized * maxSpeed;
 		if (isPlanar)
 			desiredVelocity.y = 0;
